@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Real Yield Calculator | BondStats</title>
+  <meta
+    name="description"
+    content="Calculate real bond yields based on nominal yield and inflation. Professional real yield calculator by BondStats."
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="tool-shell">
+    <section class="hero-card">
+      <p class="eyebrow">BondStats Tool</p>
+      <h1>Real Yield Calculator</h1>
+      <p class="hero-text">
+        Calculate the real yield of a bond by adjusting the nominal yield for inflation.
+        This tool helps investors compare nominal returns with inflation-adjusted returns in a clean macro-finance framework.
+      </p>
+    </section>
+
+    <section class="layout-grid">
+      <section class="input-card">
+        <div class="section-head">
+          <h2>Inputs</h2>
+          <p>Enter a nominal bond yield and an inflation rate to estimate the real yield.</p>
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="nominalYield">Nominal Yield (%)</label>
+            <input id="nominalYield" type="number" step="0.01" value="4.20" />
+          </div>
+
+          <div class="field">
+            <label for="inflationRate">Inflation Rate (%)</label>
+            <input id="inflationRate" type="number" step="0.01" value="2.80" />
+          </div>
+
+          <div class="field">
+            <label for="calculationMode">Calculation Mode</label>
+            <select id="calculationMode">
+              <option value="approx" selected>Approximate: Nominal − Inflation</option>
+              <option value="exact">Exact Fisher Approximation</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="countryLabel">Optional Label</label>
+            <input id="countryLabel" type="text" placeholder="e.g. US 10Y Treasury" />
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button id="calculateBtn" class="primary-btn">Calculate Real Yield</button>
+          <button id="resetBtn" class="secondary-btn">Reset</button>
+        </div>
+      </section>
+
+      <section class="result-card">
+        <div class="section-head">
+          <h2>Result</h2>
+          <p>Inflation-adjusted yield estimate based on the selected method.</p>
+        </div>
+
+        <div class="result-main">
+          <div class="result-badge">
+            <span class="result-label">Real Yield</span>
+            <strong id="realYieldValue">1.40%</strong>
+          </div>
+
+          <div class="status-panel">
+            <span class="status-label">Status</span>
+            <strong id="realYieldStatus" class="status-value status-positive">Positive</strong>
+          </div>
+        </div>
+
+        <div class="breakdown-card">
+          <h3>Breakdown</h3>
+          <div class="breakdown-row">
+            <span>Nominal Yield</span>
+            <strong id="nominalDisplay">4.20%</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Inflation Rate</span>
+            <strong id="inflationDisplay">2.80%</strong>
+          </div>
+          <div class="breakdown-row breakdown-total">
+            <span>Real Yield</span>
+            <strong id="realDisplay">1.40%</strong>
+          </div>
+        </div>
+
+        <div class="interpretation-card">
+          <h3>Interpretation</h3>
+          <p id="interpretationText">
+            The current real yield is positive, which means the nominal bond yield is above the inflation rate.
+          </p>
+        </div>
+      </section>
+    </section>
+
+    <section class="scenario-card">
+      <div class="section-head">
+        <h2>Inflation Sensitivity</h2>
+        <p>How the real yield changes under different inflation assumptions.</p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Inflation Rate</th>
+              <th>Estimated Real Yield</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="scenarioTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="insight-grid">
+      <article class="info-card">
+        <h3>What Real Yield Means</h3>
+        <p>
+          Real yield measures the inflation-adjusted return on a bond. It helps investors understand whether a nominal bond return is preserving purchasing power after inflation.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <h3>Approximate vs Exact</h3>
+        <p>
+          The approximate method subtracts inflation from nominal yield. The exact method applies a more precise inflation adjustment using the Fisher-style relationship between nominal and real returns.
+        </p>
+      </article>
+    </section>
+
+    <section class="methodology-card">
+      <div class="section-head">
+        <h2>Methodology</h2>
+      </div>
+      <p>
+        The approximate formula is: real yield ≈ nominal yield − inflation rate.
+      </p>
+      <p>
+        The exact formula is: real yield = ((1 + nominal yield) / (1 + inflation rate)) − 1.
+      </p>
+      <p class="disclaimer">
+        This BondStats tool is provided for informational and educational purposes only and should not be interpreted as investment advice.
+      </p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
