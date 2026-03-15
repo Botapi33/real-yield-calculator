@@ -60,7 +60,7 @@ function getRealYieldStatus(value) {
   };
 }
 
-function buildInterpretation(realYield, nominal, inflation, mode, label) {
+function buildInterpretation(realYield, mode, label) {
   const status = getRealYieldStatus(realYield).label;
   const methodText =
     mode === "exact"
@@ -91,25 +91,24 @@ function calculateRealYield(nominal, inflation, mode) {
   return calculateApproxRealYield(nominal, inflation);
 }
 
-function buildScenarioTable(nominal, mode) {
-  const baseInflation = Number(inflationRateInput.value);
+function buildScenarioTable(nominal, inflation, mode) {
   const scenarios = [
-    baseInflation - 2,
-    baseInflation - 1,
-    baseInflation,
-    baseInflation + 1,
-    baseInflation + 2
+    inflation - 2,
+    inflation - 1,
+    inflation,
+    inflation + 1,
+    inflation + 2
   ];
 
   scenarioTableBodyEl.innerHTML = "";
 
-  scenarios.forEach((inflation) => {
-    const realYield = calculateRealYield(nominal, inflation, mode);
+  scenarios.forEach((scenarioInflation) => {
+    const realYield = calculateRealYield(nominal, scenarioInflation, mode);
     const status = getRealYieldStatus(realYield);
 
     const row = document.createElement("tr");
     row.innerHTML = `
-      <td>${formatPercent(inflation)}</td>
+      <td>${formatPercent(scenarioInflation)}</td>
       <td>${formatPercent(realYield)}</td>
       <td><span class="badge ${status.badgeClass}">${status.label}</span></td>
     `;
@@ -124,7 +123,8 @@ function updateCalculator() {
   const label = countryLabelInput.value;
 
   if (Number.isNaN(nominal) || Number.isNaN(inflation)) {
-    interpretationTextEl.textContent = "Please enter valid numeric values for both nominal yield and inflation.";
+    interpretationTextEl.textContent =
+      "Please enter valid numeric values for both nominal yield and inflation.";
     return;
   }
 
@@ -139,14 +139,14 @@ function updateCalculator() {
   inflationDisplayEl.textContent = formatPercent(inflation);
   realDisplayEl.textContent = formatPercent(realYield);
 
-  interpretationTextEl.textContent = buildInterpretation(realYield, nominal, inflation, mode, label);
+  interpretationTextEl.textContent = buildInterpretation(realYield, mode, label);
 
-  buildScenarioTable(nominal, mode);
+  buildScenarioTable(nominal, inflation, mode);
 }
 
 function resetCalculator() {
-  nominalYieldInput.value = "4.20";
-  inflationRateInput.value = "2.80";
+  nominalYieldInput.value = "4.00";
+  inflationRateInput.value = "3.00";
   calculationModeSelect.value = "approx";
   countryLabelInput.value = "";
   updateCalculator();
