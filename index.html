@@ -6,7 +6,7 @@
   <title>Real Yield Calculator | BondStats</title>
   <meta
     name="description"
-    content="Calculate real bond yields based on nominal yield and inflation. Professional real yield calculator by BondStats."
+    content="Calculate the real yield of a bond by adjusting the nominal yield for inflation."
   />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -31,19 +31,19 @@
         <div class="form-grid">
           <div class="field">
             <label for="nominalYield">Nominal Yield (%)</label>
-            <input id="nominalYield" type="number" step="0.01" value="4.20" />
+            <input id="nominalYield" type="number" step="0.01" value="4.00" />
           </div>
 
           <div class="field">
             <label for="inflationRate">Inflation Rate (%)</label>
-            <input id="inflationRate" type="number" step="0.01" value="2.80" />
+            <input id="inflationRate" type="number" step="0.01" value="3.00" />
           </div>
 
           <div class="field">
             <label for="calculationMode">Calculation Mode</label>
             <select id="calculationMode">
               <option value="approx" selected>Approximate: Nominal − Inflation</option>
-              <option value="exact">Exact Fisher Approximation</option>
+              <option value="exact">Exact Fisher Adjustment</option>
             </select>
           </div>
 
@@ -68,7 +68,7 @@
         <div class="result-main">
           <div class="result-badge">
             <span class="result-label">Real Yield</span>
-            <strong id="realYieldValue">1.40%</strong>
+            <strong id="realYieldValue">1.00%</strong>
           </div>
 
           <div class="status-panel">
@@ -89,14 +89,14 @@
           </div>
           <div class="breakdown-row breakdown-total">
             <span>Real Yield</span>
-            <strong id="realDisplay">1.40%</strong>
+            <strong id="realDisplay">1.00%</strong>
           </div>
         </div>
 
         <div class="interpretation-card">
           <h3>Interpretation</h3>
           <p id="interpretationText">
-            The current real yield is positive, which means the nominal bond yield is above the inflation rate.
+            The estimated real yield is positive using the approximate nominal-minus-inflation method, which means the nominal bond yield is above the inflation rate.
           </p>
         </div>
       </section>
